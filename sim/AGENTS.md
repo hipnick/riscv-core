@@ -1,0 +1,1 @@
+All the instructions to run verilator and all the testbenches are here
