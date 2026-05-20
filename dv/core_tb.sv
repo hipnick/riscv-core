@@ -54,20 +54,18 @@ module core_tb;
     // Device Under Test (DUT) Instantiation
     // -------------------------------------------------------------------------
     core_top u_dut (
-        .clk_i  (clk),
-        .rst_n_i(rst_n),
+        .clk_i (clk),
+        .rst_ni(rst_n),
 
         // Instruction Memory Bus
-        .imem_addr_o (intf.imem_addr),
-        .imem_rdata_i(intf.imem_rdata),
-        .imem_valid_i(intf.imem_valid),
+        .instr_addr_o(intf.imem_addr),
+        .instr_data_i(intf.imem_rdata),
 
         // Data Memory Bus
         .dmem_addr_o (intf.dmem_addr),
         .dmem_wdata_o(intf.dmem_wdata),
         .dmem_rdata_i(intf.dmem_rdata),
-        .dmem_we_o   (intf.dmem_we),
-        .dmem_valid_i(intf.dmem_valid)
+        .dmem_we_o   (intf.dmem_we)
     );
 
     // -------------------------------------------------------------------------
@@ -75,9 +73,9 @@ module core_tb;
     // -------------------------------------------------------------------------
     // Connects internal pipeline writeback signals directly to interface logic
     // for passive scoreboard monitoring without hacking the DUT port list.
-    assign intf.wb_reg_addr = u_dut.wb_stage_reg_addr;
-    assign intf.wb_reg_data = u_dut.wb_stage_reg_data;
-    assign intf.wb_reg_we   = u_dut.wb_stage_reg_we;
+    assign intf.wb_reg_addr = u_dut.u_wb_stage.rd_addr_o;
+    assign intf.wb_reg_data = u_dut.u_wb_stage.rd_data_o;
+    assign intf.wb_reg_we   = u_dut.u_wb_stage.reg_write_en_o;
 
     // -------------------------------------------------------------------------
     // UVM Configuration Database & Test Execution Entry
