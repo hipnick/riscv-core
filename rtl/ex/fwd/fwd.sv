@@ -9,6 +9,10 @@
 //
 // License:         Apache-2.0
 // =============================================================================
+`ifndef FWD_SV
+`define FWD_SV
+`timescale 1ns / 1ps
+`default_nettype none
 
 module fwd
     import riscv_types_pkg::*;
@@ -69,4 +73,5 @@ module fwd
         op_b_addr_i, rd_addr_mem_i, reg_we_mem_i, rd_addr_wb_i, reg_we_wb_i
     );
 
-endmodule
+endmodule : fwd
+`endif

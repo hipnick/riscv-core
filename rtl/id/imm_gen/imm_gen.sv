@@ -9,7 +9,8 @@
 //
 // License:         Apache-2.0
 // =============================================================================
-
+`ifndef IMM_GEN_SV
+`define IMM_GEN_SV
 `timescale 1ns / 1ps
 `default_nettype none
 
@@ -74,3 +75,4 @@ module imm_gen
     end
 
 endmodule : imm_gen
+`endif

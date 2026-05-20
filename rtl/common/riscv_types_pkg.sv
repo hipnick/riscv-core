@@ -10,6 +10,8 @@
 // =============================================================================
 `ifndef RISCV_TYPES_PKG_SV
 `define RISCV_TYPES_PKG_SV
+`timescale 1ns / 1ps
+`default_nettype none
 
 package riscv_types_pkg;
 

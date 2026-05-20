@@ -9,6 +9,9 @@
 //
 // License:         Apache-2.0
 // =============================================================================
+`ifndef ALU_SV
+`define ALU_SV
+`timescale 1ns / 1ps
 `default_nettype none
 
 module alu
@@ -66,9 +69,13 @@ module alu
             ALU_XOR: result = op_a_i ^ op_b_i;  // Bitwise XOR
 
             // Shifts (Note: RISC-V shifts only use the bottom 5 bits for 32-bit)
-            ALU_SLL: result = op_a_i << op_b_i[DATA_WIDTH_BITS-1:0];  //Shift Left Logical
-            ALU_SRL: result = op_a_i >> op_b_i[DATA_WIDTH_BITS-1:0];  //Shift Right Logical
-            ALU_SRA: result = data_t'($signed(op_a_i) >>> op_b_i[DATA_WIDTH_BITS-1:0]);  //Shift Right Arithmetic (Sign-preserved)
+            ALU_SLL:
+            result = op_a_i << op_b_i[DATA_WIDTH_BITS-1:0];  //Shift Left Logical
+            ALU_SRL:
+            result = op_a_i >> op_b_i[DATA_WIDTH_BITS-1:0];  //Shift Right Logical
+            ALU_SRA:
+            result = data_t'($signed(op_a_i) >>> op_b_i[DATA_WIDTH_BITS-1:0])
+                ;  //Shift Right Arithmetic (Sign-preserved)
 
             // Comparisons (SHIFT LESS THAN (Signed)/(Unsigned))
             ALU_SLT:  result = ($signed(op_a_i) < $signed(op_b_i)) ? '1 : '0;
@@ -90,4 +97,5 @@ module alu
     // Flag: Negative is simply the Most Significant Bit (Sign bit)
     assign alu_negative_o = result[DATA_WIDTH-1];
 
-endmodule
+endmodule : alu
+`endif

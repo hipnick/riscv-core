@@ -10,7 +10,9 @@
 //
 // License:         Apache-2.0
 // =============================================================================
-
+`ifndef RF_SV
+`define RF_SV
+`timescale 1ns / 1ps
 `default_nettype none
 
 module rf
@@ -57,3 +59,4 @@ module rf
     end
 
 endmodule : rf
+`endif

@@ -9,6 +9,9 @@
 //
 // License:         Apache-2.0
 // =============================================================================
+`ifndef BC_SV
+`define BC_SV
+`timescale 1ns / 1ps
 `default_nettype none
 
 module bc
@@ -25,13 +28,20 @@ module bc
         bc_taken_o = 1'b0;
 
         unique case (bc_ctrl_i)
-            BC_BEQ:  bc_taken_o = (op_a_i == op_b_i);  // Branch Equal
-            BC_BNE:  bc_taken_o = (op_a_i != op_b_i);  // Branch Not Equal
-            BC_BLT:  bc_taken_o = ($signed(op_a_i) < $signed(op_b_i));  // Branch Less Than
-            BC_BGE:  bc_taken_o = ($signed(op_a_i) >= $signed(op_b_i));  // Branch Greater Equal
-            BC_BLTU: bc_taken_o = (op_a_i < op_b_i);  // Branch Less Than Unsigned
-            BC_BGEU: bc_taken_o = (op_a_i >= op_b_i);  // Branch Greater Equal Unsigned
+            BC_BEQ: bc_taken_o = (op_a_i == op_b_i);  // Branch Equal
+            BC_BNE: bc_taken_o = (op_a_i != op_b_i);  // Branch Not Equal
+            BC_BLT:
+            bc_taken_o = ($signed(op_a_i) <
+                          $signed(op_b_i));  // Branch Less Than
+            BC_BGE:
+            bc_taken_o = ($signed(op_a_i) >=
+                          $signed(op_b_i));  // Branch Greater Equal
+            BC_BLTU:
+            bc_taken_o = (op_a_i < op_b_i);  // Branch Less Than Unsigned
+            BC_BGEU:
+            bc_taken_o = (op_a_i >= op_b_i);  // Branch Greater Equal Unsigned
         endcase
     end
 
-endmodule
+endmodule : bc
+`endif

@@ -9,7 +9,9 @@
 //
 // License:         Apache-2.0
 // =============================================================================
-
+`ifndef AGU_SV
+`define AGU_SV
+`timescale 1ns / 1ps
 `default_nettype none
 
 module agu
@@ -33,4 +35,5 @@ module agu
     // Forced Alignment: RISC-V requires the target address LSB to be 0
     assign target_addr_o = {sum[DATA_WIDTH-1:ALIGN_WIDTH], {ALIGN_WIDTH{1'b0}}};
 
-endmodule
+endmodule : agu
+`endif

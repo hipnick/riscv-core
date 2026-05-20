@@ -9,7 +9,9 @@
 //
 // License:         Apache-2.0
 // =============================================================================
-
+`ifndef CU_SV
+`define CU_SV
+`timescale 1ns / 1ps
 `default_nettype none
 
 module cu
@@ -136,3 +138,4 @@ module cu
     end
 
 endmodule : cu
+`endif

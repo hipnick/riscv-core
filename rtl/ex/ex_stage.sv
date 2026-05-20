@@ -6,10 +6,13 @@
 //                  Instantiates ALU, Branch Comparator, and AGU using
 //                  wildcard port connections (.*).
 //
-// Dependencies:    riscv_types_pkg.sv, alu.sv, bc.sv, agu.sv
+// Dependencies:    riscv_types_pkg.sv, alu.sv, bc.sv, agu.sv, fwd.sv
 //
 // License:         Apache-2.0
 // =============================================================================
+`ifndef EX_STAGE_SV
+`define EX_STAGE_SV
+`timescale 1ns / 1ps
 `default_nettype none
 
 module ex_stage
@@ -110,4 +113,5 @@ module ex_stage
         .target_addr_o(target_addr_o)
     );
 
-endmodule
+endmodule : ex_stage
+`endif
