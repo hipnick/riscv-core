@@ -110,15 +110,6 @@ package riscv_types_pkg;
         F7_VARIANT  = 7'b0100000  // Variant operations (e.g., SUB instead of ADD)
     } funct7_e;
 
-    // Immediate Source Enum (The "Schema" selector)
-    typedef enum logic [2:0] {
-        IMM_I,  // Arithmetic/Load
-        IMM_S,  // Stores
-        IMM_B,  // Branches
-        IMM_U,  // Upper Immediates (LUI)
-        IMM_J   // Jumps (JAL)
-    } imm_src_e;
-
     typedef enum logic [2:0] {
         LSU_BYTE   = 3'b000,
         LSU_HALF   = 3'b001,
@@ -138,12 +129,6 @@ package riscv_types_pkg;
     localparam int IMM_S_WIDTH = 12;
     localparam int IMM_B_WIDTH = 13;
     localparam int IMM_J_WIDTH = 21;
-
-    // Derived Replication Counts (Total Width - Field Width)
-    localparam int REP_I = DATA_WIDTH - IMM_I_WIDTH;
-    localparam int REP_S = DATA_WIDTH - IMM_S_WIDTH;
-    localparam int REP_B = DATA_WIDTH - IMM_B_WIDTH;
-    localparam int REP_J = DATA_WIDTH - IMM_J_WIDTH;
 
     // Sign Bit Index
     localparam int SIGN_BIT = DATA_WIDTH - 1;

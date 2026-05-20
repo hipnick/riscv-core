@@ -14,12 +14,12 @@
 `timescale 1ns / 1ps
 `default_nettype none
 
-interface core_if (
+interface core_if
+    import riscv_types_pkg::*;
+(
     input logic clk,
     input logic rst_n
 );
-
-    import riscv_types_pkg::*;
 
     // -------------------------------------------------------------------------
     // Instruction Memory Interface (Bus / Agent Pins)

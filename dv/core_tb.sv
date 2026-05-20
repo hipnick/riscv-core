@@ -74,7 +74,7 @@ module core_tb;
     // Connects internal pipeline writeback signals directly to interface logic
     // for passive scoreboard monitoring without hacking the DUT port list.
     assign intf.wb_reg_addr = u_dut.u_wb_stage.rd_addr_o;
-    assign intf.wb_reg_data = u_dut.u_wb_stage.rd_data_o;
+    assign intf.wb_reg_data = u_dut.u_wb_stage.wb_data_o;
     assign intf.wb_reg_we   = u_dut.u_wb_stage.reg_write_en_o;
 
     // -------------------------------------------------------------------------
