@@ -51,34 +51,32 @@ riscv-core/
 │   │   └── branch_comp/       # (Follow the same pattern as alu)
 │   ├── id/                    # Instruction Decode Stage (Follow the same pattern as ex)
 │   └── core_top.sv
-└── dv/                         # Design Verification Root
-└── dv/                         # Design Verification Root
-    ├── verification_plan.md    # This Document
-    ├── tb_top/
-    │   └── core_tb.sv          # Hardware Harness, Virtual Interfaces, Mem Model
-    ├── env/
-    │   ├── core_env_pkg.sv     # UVM Package wrapping all components
-    │   ├── riscv_instr_tx.sv   # Transaction object extending uvm_sequence_item
-    │   ├── core_env.sv         # Environment Class extending uvm_env
-    │   ├── core_scoreboard.sv  # Scoreboard extending uvm_scoreboard
-    │   └── memory_agent/
-    │       ├── mem_agent.sv    # Agent extending uvm_agent
-    │       ├── mem_sequencer.sv# Sequencer extending uvm_sequencer
-    │       ├── mem_driver.sv   # Driver extending uvm_driver
-    │       └── mem_monitor.sv  # Monitor extending uvm_monitor
-    ├── sequences/
-    │   ├── core_base_seq.sv    # Parent Base Sequence
-    │   └── random_instr_seq.sv # Phase 4 Constrained Random Sequence
-    ├── tests/
-    │   ├── core_base_test.sv   # Parent Base Test extending uvm_test
-    │   ├── test_smoke.sv       # Phase 1 Test Case
-    │   ├── test_hazards.sv     # Phase 2 Test Case
-    │   ├── test_c_runtime.sv   # Phase 3 Test Case
-    │   └── test_random.sv      # Phase 4 Test Case
-    └── sw/                     # Software Target Sources
-        ├── asm/                # Handcrafted direct .s or .mem source strings
-        ├── c_src/              # Freestanding C source code scripts (.c)
-        └── linker.ld           # Custom memory map layout script
+├── dv/                         # Design Verification Root
+│   ├── tb_top/
+│   │   └── core_tb.sv          # Hardware Harness, Virtual Interfaces, Mem Model
+│   ├── env/
+│   │   ├── core_env_pkg.sv     # UVM Package wrapping all components
+│   │   ├── riscv_instr_tx.sv   # Transaction object extending uvm_sequence_item
+│   │   ├── core_env.sv         # Environment Class extending uvm_env
+│   │   ├── core_scoreboard.sv  # Scoreboard extending uvm_scoreboard
+│   │   └── memory_agent/
+│   │       ├── mem_agent.sv    # Agent extending uvm_agent
+│   │       ├── mem_sequencer.sv# Sequencer extending uvm_sequencer
+│   │       ├── mem_driver.sv   # Driver extending uvm_driver
+│   │       └── mem_monitor.sv  # Monitor extending uvm_monitor
+│   ├── sequences/
+│   │   ├── core_base_seq.sv    # Parent Base Sequence
+│   │   └── random_instr_seq.sv # Phase 4 Constrained Random Sequence
+│   ├── tests/
+│   │   ├── core_base_test.sv   # Parent Base Test extending uvm_test
+│   │   ├── test_smoke.sv       # Phase 1 Test Case
+│   │   ├── test_hazards.sv     # Phase 2 Test Case
+│   │   ├── test_c_runtime.sv   # Phase 3 Test Case
+│   │   └── test_random.sv      # Phase 4 Test Case
+│   └── sw/                     # Software Target Sources
+│       ├── asm/                # Handcrafted direct .s or .mem source strings
+│       ├── c_src/              # Freestanding C source code scripts (.c)
+│       └── linker.ld           # Custom memory map layout script
 ├── sim/                       # Verilator, Simulation scripts & build artifacts
 └── doc/                       # Specs and documentation
 ```

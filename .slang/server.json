@@ -1,0 +1,4 @@
+{
+    "flags": "-DDEBUG_LEVEL=2",
+    "build": "top.f"
+}

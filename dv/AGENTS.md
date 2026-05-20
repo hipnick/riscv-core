@@ -64,5 +64,4 @@ Since Verilator optimizes simulation via compilation into static C++, tracking v
 
 1. **Structural Code Coverage:** Compiled using the coverage flag to automatically track line, branch, and toggle coverage throughout the pipeline logic. Results are viewed via verilator_coverage HTML outputs.
 2. **Functional Event Coverage:** Since Verilator does not natively implement traditional SystemVerilog covergroup constructs, functional coverage is achieved via SystemVerilog Assertions (SVA) Cover Properties mapped inside the monitoring layers. For example, the environment explicitly covers the state where a load-use hazard occurs concurrently with an active hazard detection unit stall flag.
-
 ---
