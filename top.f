@@ -29,8 +29,12 @@ rtl/ex/ex_stage.sv
 rtl/mem/mem_stage.sv
 rtl/wb/wb_stage.sv
 
-# Top-level
-rtl/core_top.sv
 
+# Top-level
++incdir+dv
++incdir+dv/env
++incdir+dv/env/memory_agent
+rtl/core_top.sv
 dv/core_if.sv
+dv/env/core_env_pkg.sv
 dv/core_tb.sv

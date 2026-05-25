@@ -17,10 +17,10 @@
 `timescale 1ns / 1ps
 `default_nettype none
 
-module core_tb;
-
+module core_tb
     import uvm_pkg::*;
     import riscv_types_pkg::*;
+();
     `include "uvm_macros.svh"
 
     // -------------------------------------------------------------------------
