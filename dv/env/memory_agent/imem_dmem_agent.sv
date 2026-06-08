@@ -10,13 +10,13 @@
 // License:         Apache-2.0
 // =============================================================================
 
-`ifndef MEM_AGENT_SV
-`define MEM_AGENT_SV
+`ifndef IMEM_DMEM_AGENT_SV
+`define IMEM_DMEM_AGENT_SV
 
 import riscv_types_pkg::*;
 import core_env_pkg::*;
 
-class mem_agent extends uvm_agent;
+class imem_dmem_agent extends uvm_agent;
 
     `uvm_component_utils(mem_agent)
 
@@ -63,4 +63,4 @@ class mem_agent extends uvm_agent;
 
 endclass : mem_agent
 
-`endif  // MEM_AGENT_SV
+`endif  // IMEM_DMEM_AGENT_SV

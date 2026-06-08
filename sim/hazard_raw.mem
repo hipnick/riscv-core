@@ -1,0 +1,8 @@
+// hazard_raw.mem
+// Target: Bypass logic validation (EX->EX and MEM->EX forwarding)
+2011000a // addi x1, x0, 10    -> Write x1 = 10
+00108233 // add  x4, x1, x1    -> EX->EX Hazard: Consumes x1 immediately (Expected x4 = 20)
+004102b3 // add  x5, x2, x4    -> MEM->EX Hazard: Consumes x4 on the next cycle (Expected x5 = 20)
+00000013 // nop
+00000013 // nop
+00000013 // nop

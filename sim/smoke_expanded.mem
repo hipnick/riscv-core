@@ -1,0 +1,47 @@
+// smoke_expanded.mem
+// 32-bit hex instructions (one per line)
+// -------------------------------------------------------------------------
+// 1. Hardwired Register x0 Verification
+// -------------------------------------------------------------------------
+3c00000a // lui  x0, 0x0000a  -> Attempt to write to x0 (Must remain 0)
+20000005 // addi x0, x0, 5    -> Attempt arithmetic on x0 (Must remain 0)
+// -------------------------------------------------------------------------
+// 2. Register File Boundary & Opcodes Setup (Mutually Exclusive Targets)
+// -------------------------------------------------------------------------
+3c011000 // lui  x1, 0x01100  -> x1 = 0x01100000
+20220050 // addi x2, x1, 80   -> x2 = x1 + 0x50 (Dependencies separated to avoid hazards)
+3c032000 // lui  x3, 0x02000  -> x3 = 0x02000000
+20640020 // addi x4, x3, 32   -> x4 = x3 + 0x20
+// -------------------------------------------------------------------------
+// 3. I-Type Immediate Logical Operations (Using unique target registers)
+// -------------------------------------------------------------------------
+20a5000f // addi x5, x1, 15   -> F3_ADD_SUB: x5 = x1 + 15
+24c60004 // slli x6, x1, 4    -> F3_SLL:     x6 = x1 << 4
+28e700ff // slti x7, x1, 255  -> F3_SLT:     x7 = (x1 < 255) ? 1 : 0
+2cf800ff // sltiu x8, x1, 255 -> F3_SLTU:    x8 = (x1 < 255 unsigned) ? 1 : 0
+319900f0 // xori x9, x1, 240  -> F3_XOR:     x9 = x1 ^ 0xF0
+35aa0002 // srli x10, x1, 2   -> F3_SRL_SRA: x10 = x1 >> 2 (Logical shift)
+45cb0002 // srai x11, x1, 2   -> F3_SRL_SRA: x11 = x1 >>> 2 (Arithmetic shift, variant bit set)
+39ec00ff // ori  x12, x1, 255 -> F3_OR:      x12 = x1 | 0xFF
+3ded000f // andi x13, x1, 15  -> F3_AND:     x13 = x1 & 0x0F
+// -------------------------------------------------------------------------
+// 4. R-Type Register-Register Operations (Using pre-seeded clean sources)
+// -------------------------------------------------------------------------
+00430733 // add  x14, x6, x4  -> F3_ADD_SUB: Add x6 and x4
+404307b3 // sub  x15, x6, x4  -> F3_ADD_SUB: Subtract x4 from x6 (Variant bit set)
+00431833 // sll  x16, x6, x4  -> F3_SLL:     Shift left logical
+004328b3 // slt  x17, x6, x4  -> F3_SLT:     Set less than signed
+00433933 // sltu x18, x6, x4  -> F3_SLTU:    Set less than unsigned
+004349b3 // xor  x19, x6, x4  -> F3_XOR:     Logical XOR
+00435a33 // srl  x20, x6, x4  -> F3_SRL_SRA: Shift right logical
+40435ab3 // sra  x21, x6, x4  -> F3_SRL_SRA: Shift right arithmetic (Variant bit set)
+00436b33 // or   x22, x6, x4  -> F3_OR:      Logical OR
+00437bb3 // and  x23, x6, x4  -> F3_AND:     Logical AND
+// -------------------------------------------------------------------------
+// 5. Upper Immediates & Pipeline Flush NOPs
+// -------------------------------------------------------------------------
+00017c37 // auipc x24, 0x00017 -> OP_AUIPC:   x24 = PC + 0x00017000
+00000013 // nop
+00000013 // nop
+00000013 // nop
+00000013 // nop

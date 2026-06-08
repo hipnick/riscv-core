@@ -1,0 +1,9 @@
+// hazard_control.mem
+// Target: Speculative execution clearing and flush validation
+20110005 // addi x1, x0, 5     -> x1 = 5
+20220005 // addi x2, x0, 5     -> x2 = 5
+00208463 // beq  x1, x2, 8     -> branch to PC + 8 (Skipping the following addi if equal) [cite: 15]
+20330064 // addi x3, x0, 100   -> Caught in branch slot; MUST BE FLUSHED (Should not execute)
+20440200 // addi x4, x0, 512   -> Target landing zone: Execution resumes cleanly here
+00000013 // nop
+00000013 // nop

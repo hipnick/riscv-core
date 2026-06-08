@@ -1,0 +1,10 @@
+// smoke.mem
+// 32-bit hex instructions (one per line)
+3c01000a // lui  x1, 0x0000a  (Loads upper bits)
+20220005 // addi x2, x1, 5    (Isolated execution: targets x2, depends on x1 but separated by clock cycles)
+3c03000b // lui  x3, 0x0000b  (Mutually exclusive register target)
+20640010 // addi x4, x3, 16   (Mutually exclusive register target)
+00000013 // nop / addi x0, x0, 0
+00000013 // nop / addi x0, x0, 0
+00000013 // nop / addi x0, x0, 0
+00000013 // nop / addi x0, x0, 0

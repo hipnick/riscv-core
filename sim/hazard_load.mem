@@ -1,0 +1,7 @@
+// hazard_load.mem
+// Target: Interlock stall loop validation
+0000a083 // lw   x1, 0(x1)     -> Load memory contents into x1
+00108233 // add  x4, x1, x1    -> CRITICAL LOAD-USE: Consumes x1 instantly. HDU must stall 1 cycle.
+00000013 // nop
+00000013 // nop
+00000013 // nop
