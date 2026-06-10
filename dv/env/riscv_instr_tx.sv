@@ -14,8 +14,6 @@
 
 class riscv_instr_tx extends uvm_sequence_item;
 
-    import riscv_types_pkg::*;
-
     // Randomized Instruction Fields
     rand opcode_e             opcode;
     rand address_t            rs1;

@@ -138,6 +138,22 @@ package riscv_types_pkg;
 
     typedef logic [BYTES_PER_WORD-1:0] bytes_enable_t;
 
+    // -------------------------------------------------------------------------
+    // Immediate Types for Sign Extension
+    // -------------------------------------------------------------------------
+    typedef enum logic [2:0] {
+        IMM_I = 3'b000,
+        IMM_S = 3'b001,
+        IMM_B = 3'b010,
+        IMM_U = 3'b011,
+        IMM_J = 3'b100
+    } imm_src_e;
+
+    // Sign-extension repeat counts for each immediate format
+    localparam int REP_I = DATA_WIDTH - IMM_I_WIDTH;
+    localparam int REP_S = DATA_WIDTH - IMM_S_WIDTH;
+    localparam int REP_B = DATA_WIDTH - IMM_B_WIDTH;
+    localparam int REP_J = DATA_WIDTH - IMM_J_WIDTH;
 
 endpackage
 

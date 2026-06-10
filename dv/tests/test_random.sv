@@ -35,8 +35,8 @@ class test_random extends core_base_test;
         phase.raise_objection(this, "Starting Phase 4 Constrained Random Execution");
 
         // Instruct active memory agent sequencer to consume the randomized sequence loop
-        if (env.imem_dmem_agent != null && env.imem_dmem_agent.mem_sequencer != null) begin
-            rand_seq.start(env.imem_dmem_agent.mem_sequencer);
+        if (env.agent != null && env.agent.sequencer != null) begin
+            rand_seq.start(env.agent.sequencer);
         end else begin
             `uvm_fatal("TEST_RAND_INIT_FAIL", "Unable to locate environment target virtual sequencer hook")
         end

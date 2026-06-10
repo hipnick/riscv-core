@@ -9,6 +9,10 @@
 `ifndef MEM_DRIVER_SV
 `define MEM_DRIVER_SV
 
+import uvm_pkg::*;
+import core_env_pkg::*;
+import riscv_types_pkg::*;
+
 class mem_driver extends uvm_driver #(riscv_instr_tx);
     `uvm_component_utils(mem_driver)
 
@@ -60,9 +64,9 @@ class mem_driver extends uvm_driver #(riscv_instr_tx);
         // You will update output pins via: vif.drv_cb.imem_rdata <= ...
     endtask : drive_transaction
 
-    virtual task load_backdoor_memory(string file_path);
+    virtual task load_backdoor_program(string file_path);
         // Robust custom parsing mechanism to populate associative ram_model array goes here
-    endtask : load_backdoor_memory
+    endtask : load_backdoor_program
 
 endclass : mem_driver
 

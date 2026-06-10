@@ -12,6 +12,10 @@
 `ifndef RANDOM_INSTR_SEQ_SV
 `define RANDOM_INSTR_SEQ_SV
 
+import uvm_pkg::*;
+import core_env_pkg::*;
+import riscv_types_pkg::*;
+
 class random_instr_seq extends core_base_seq;
 
     `uvm_object_utils(random_instr_seq)

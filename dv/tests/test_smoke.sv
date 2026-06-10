@@ -36,8 +36,8 @@ class test_smoke extends core_base_test;
             `uvm_info("TEST_SMOKE", $sformatf("Command line override detected. Loading: %s", mem_file), UVM_LOW)
         end
 
-        if (env.imem_dmem_agent != null && env.imem_dmem_agent.mem_driver != null) begin
-            env.imem_dmem_agent.mem_driver.load_backdoor_program(mem_file);
+        if (env.agent != null && env.agent.driver != null) begin
+            env.agent.driver.load_backdoor_program(mem_file);
         end else begin
             `uvm_fatal("TEST_SMOKE_INIT_FAIL", "Unable to access structural mem_driver handle")
         end

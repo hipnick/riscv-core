@@ -13,8 +13,10 @@
 
 `ifndef MEM_MONITOR_SV
 `define MEM_MONITOR_SV
-import riscv_types_pkg::*;
+
+import uvm_pkg::*;
 import core_env_pkg::*;
+import riscv_types_pkg::*;
 
 class mem_monitor extends uvm_monitor;
 
@@ -57,6 +59,7 @@ class mem_monitor extends uvm_monitor;
     protected task collect_transaction();
         riscv_instr_tx tx;
         data_t         sampled_instr;
+        imm_src_e      imm_type;
 
         // Synchronize on the monitor clocking block event edge
         @(vif.mon_cb);
@@ -75,8 +78,8 @@ class mem_monitor extends uvm_monitor;
             tx.rs2        = sampled_instr[24:20];
 
             // Reconstruct the sign-extended immediate value based on transaction type
-            tx.imm_type   = get_imm_type(tx.opcode);
-            tx.imm        = decode_immediate(sampled_instr, tx.imm_type);
+            imm_type      = get_imm_type(tx.opcode);
+            tx.imm        = decode_immediate(sampled_instr, imm_type);
 
             // Broadcast to the scoreboard via TLM analysis port
             ap.write(tx);

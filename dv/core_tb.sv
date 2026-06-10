@@ -15,13 +15,10 @@
 `ifndef CORE_TB_SV
 `define CORE_TB_SV
 `timescale 1ns / 1ps
-`default_nettype none
+import uvm_pkg::*;
+import riscv_types_pkg::*;
 
-module core_tb
-    import uvm_pkg::*;
-    import riscv_types_pkg::*;
-();
-    `include "uvm_macros.svh"
+module core_tb;
 
     // -------------------------------------------------------------------------
     // System Clock & Reset Generation
@@ -67,15 +64,6 @@ module core_tb
         .dmem_rdata_i(intf.dmem_rdata),
         .dmem_we_o   (intf.dmem_we)
     );
-
-    // -------------------------------------------------------------------------
-    // Bind Statement for Passive Verification Points
-    // -------------------------------------------------------------------------
-    // Connects internal pipeline writeback signals directly to interface logic
-    // for passive scoreboard monitoring without hacking the DUT port list.
-    assign intf.wb_reg_addr = u_dut.u_pr_mem_wb.rd_addr_o;
-    assign intf.wb_reg_data = u_dut.u_wb_stage.wb_data_o;
-    assign intf.wb_reg_we   = u_dut.u_wb_stage.reg_write_en_o;
 
     // -------------------------------------------------------------------------
     // UVM Configuration Database & Test Execution Entry

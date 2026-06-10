@@ -1,6 +1,6 @@
 // =============================================================================
 // Project:         riscv-core
-// File:            mem_agent.sv
+// File:            imem_dmem_agent.sv
 //
 // Description:     Active UVM Agent encapsulating the sequencer, driver, 
 //                  and monitor for the RISC-V memory bus interfaces.
@@ -13,12 +13,13 @@
 `ifndef IMEM_DMEM_AGENT_SV
 `define IMEM_DMEM_AGENT_SV
 
-import riscv_types_pkg::*;
+import uvm_pkg::*;
 import core_env_pkg::*;
+import riscv_types_pkg::*;
 
 class imem_dmem_agent extends uvm_agent;
 
-    `uvm_component_utils(mem_agent)
+    `uvm_component_utils(imem_dmem_agent)
 
     // --- Sub-Components ---
     mem_sequencer sequencer;
@@ -29,7 +30,7 @@ class imem_dmem_agent extends uvm_agent;
     uvm_analysis_port #(riscv_instr_tx) ap;
 
     // --- Constructor ---
-    function new(string name = "mem_agent", uvm_component parent = null);
+    function new(string name = "imem_dmem_agent", uvm_component parent = null);
         super.new(name, parent);
     endfunction : new
 
@@ -61,6 +62,6 @@ class imem_dmem_agent extends uvm_agent;
         end
     endfunction : connect_phase
 
-endclass : mem_agent
+endclass : imem_dmem_agent
 
 `endif  // IMEM_DMEM_AGENT_SV

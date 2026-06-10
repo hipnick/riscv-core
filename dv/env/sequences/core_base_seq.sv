@@ -11,6 +11,10 @@
 `ifndef CORE_BASE_SEQ_SV
 `define CORE_BASE_SEQ_SV
 
+import uvm_pkg::*;
+import core_env_pkg::*;
+import riscv_types_pkg::*;
+
 class core_base_seq extends uvm_sequence #(riscv_instr_tx);
 
     `uvm_object_utils(core_base_seq)

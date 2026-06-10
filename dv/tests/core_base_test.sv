@@ -12,6 +12,10 @@
 `ifndef CORE_BASE_TEST_SV
 `define CORE_BASE_TEST_SV
 
+import uvm_pkg::*;
+import core_env_pkg::*;
+import riscv_types_pkg::*;
+
 class core_base_test extends uvm_test;
 
     `uvm_component_utils(core_base_test)
@@ -33,7 +37,7 @@ class core_base_test extends uvm_test;
     // UVM End of Elaboration Phase: Print structural topology for debug
     virtual function void end_of_elaboration_phase(uvm_phase phase);
         super.end_of_elaboration_phase(phase);
-        uvm_top.print_topology();
+        uvm_root::get().print_topology();
     endfunction : end_of_elaboration_phase
 
 endclass : core_base_test

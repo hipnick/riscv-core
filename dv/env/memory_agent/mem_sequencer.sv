@@ -12,8 +12,10 @@
 
 `ifndef MEM_SEQUENCER_SV
 `define MEM_SEQUENCER_SV
-import riscv_types_pkg::*;
+
+import uvm_pkg::*;
 import core_env_pkg::*;
+import riscv_types_pkg::*;
 
 class mem_sequencer extends uvm_sequencer #(riscv_instr_tx);
 

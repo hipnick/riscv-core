@@ -13,6 +13,10 @@
 `ifndef CORE_SCOREBOARD_SV
 `define CORE_SCOREBOARD_SV
 
+import uvm_pkg::*;
+import core_env_pkg::*;
+import riscv_types_pkg::*;
+
 class core_scoreboard extends uvm_scoreboard;
 
     `uvm_component_utils(core_scoreboard)
